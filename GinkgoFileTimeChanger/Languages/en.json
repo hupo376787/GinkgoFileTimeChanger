@@ -1,0 +1,21 @@
+﻿{
+  "app_name": "Ginkgo File Time Changer",
+  "language": "Language",
+  "start": "Start",
+  "created_time": "Created Time",
+  "modified_time": "Modified Time",
+  "accessed_time": "Accessed Time",
+  "add_files": "Add Files",
+  "add_folder": "Add Folder",
+  "clear_list": "Clear List",
+  "apply_all": "Apply All",
+  "analysising_files": "Analysising Files...",
+  "add_files_via_dragdrop": "Add files via drag & drop",
+  "ready": "Ready",
+  "about": "About",
+  "changed_x_files": "Changed {0} files",
+  "found_x_files": "Found {0} files",
+  "adding_files": "Adding file {0}/{1}",
+  "added_x_files": "Added {0} files",
+  "reordering_files": "Reordering files..."
+}

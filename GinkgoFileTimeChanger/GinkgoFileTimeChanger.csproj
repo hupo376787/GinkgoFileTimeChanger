@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <TargetPlatformMinVersion>7.0</TargetPlatformMinVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>calendar.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\add-file.png" />
+    <None Remove="Images\calendar.png" />
+    <None Remove="Images\create-folder.png" />
+    <None Remove="Images\DragDrop.png" />
+    <None Remove="Images\empty-box.png" />
+    <None Remove="Images\github.png" />
+    <None Remove="Languages\en.json" />
+    <None Remove="Languages\zh.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="calendar.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Languages\en.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Languages\zh.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="MicaWPF" Version="6.3.0" />
+    <PackageReference Include="MultiLanguageForXAML" Version="2.3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DateTimePicker\DateTimePicker.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\add-file.png" />
+    <Resource Include="Images\calendar.png" />
+    <Resource Include="Images\create-folder.png" />
+    <Resource Include="Images\DragDrop.png" />
+    <Resource Include="Images\empty-box.png" />
+    <Resource Include="Images\github.png" />
+  </ItemGroup>
+
+</Project>

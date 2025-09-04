@@ -1,0 +1,21 @@
+﻿{
+  "app_name": "银杏文件时间修改器",
+  "language": "语言",
+  "start": "开始",
+  "created_time": "创建时间",
+  "modified_time": "修改时间",
+  "accessed_time": "访问时间",
+  "add_files": "添加文件",
+  "add_folder": "添加文件夹",
+  "clear_list": "清空列表",
+  "apply_all": "应用所有",
+  "analysising_files": "正在分析...",
+  "add_files_via_dragdrop": "拖拽文件到列表以添加文件",
+  "ready": "准备就绪",
+  "about": "关于",
+  "changed_x_files": "已修改 {0} 个文件",
+  "found_x_files": "已发现 {0} 个文件",
+  "adding_files": "正在添加 {0}/{1}",
+  "added_x_files": "已添加 {0} 个文件",
+  "reordering_files": "正在排序..."
+}

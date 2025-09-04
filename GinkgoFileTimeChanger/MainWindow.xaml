@@ -1,0 +1,311 @@
+﻿<controls:MicaWindow
+  x:Class="GinkgoFileTimeChanger.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:cc="clr-namespace:GinkgoFileTimeChanger.Converters"
+  xmlns:controls="clr-namespace:MicaWPF.Controls;assembly=MicaWPF"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:dt="clr-namespace:DateTimePicker;assembly=DateTimePicker"
+  xmlns:lan="clr-namespace:MultiLanguageForXAML;assembly=MultiLanguageForXAML"
+  xmlns:local="clr-namespace:GinkgoFileTimeChanger"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  Width="1280"
+  Height="800"
+  lan:Xaml.Key="app_name"
+  Icon="/Images/calendar.png"
+  TitleBarType="WinUI"
+  mc:Ignorable="d">
+
+  <controls:MicaWindow.DataContext>
+    <local:MainViewModel />
+  </controls:MicaWindow.DataContext>
+
+  <controls:MicaWindow.Resources>
+    <cc:ColorConverter x:Key="ColorConverter" />
+  </controls:MicaWindow.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition />
+      <RowDefinition Height="20" />
+    </Grid.RowDefinitions>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <Image
+        Width="80"
+        Margin="16"
+        Source="/Images/calendar.png"
+        Visibility="Visible" />
+      <Grid Grid.Column="1" Margin="16,8,8,8">
+        <Grid.RowDefinitions>
+          <RowDefinition />
+          <RowDefinition />
+          <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+          <TextBlock
+            Width="88"
+            VerticalAlignment="Center"
+            d:Text="Created Time"
+            lan:Xaml.Key="created_time"
+            Foreground="Gray"
+            MouseDown="TextBlock_MouseDown" />
+          <dt:DateTimePickerControl SelectedDateTime="{Binding DataContext.CreatedTime, RelativeSource={RelativeSource AncestorType=Window}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+          <Button
+            Width="24"
+            Height="24"
+            Margin="8,0,0,0"
+            local:ButtonExtensions.CornerRadius="12"
+            BorderThickness="0"
+            Command="{Binding ApplyAllTimeCommand}"
+            Content="="
+            Style="{StaticResource CustomCornerButtonStyle}">
+            <Button.ToolTip>
+              <TextBlock lan:Xaml.Key="apply_all" />
+            </Button.ToolTip>
+          </Button>
+        </StackPanel>
+        <StackPanel
+          Grid.Row="1"
+          Margin="0,8,0,0"
+          Orientation="Horizontal">
+          <TextBlock
+            Width="88"
+            VerticalAlignment="Center"
+            d:Text="Modified Time"
+            lan:Xaml.Key="modified_time"
+            Foreground="Gray"
+            MouseDown="TextBlock_MouseDown" />
+          <dt:DateTimePickerControl SelectedDateTime="{Binding DataContext.ModifiedTime, RelativeSource={RelativeSource AncestorType=Window}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+        <StackPanel
+          Grid.Row="2"
+          Margin="0,8,0,0"
+          Orientation="Horizontal">
+          <TextBlock
+            Width="88"
+            VerticalAlignment="Center"
+            d:Text="Accessed Time"
+            lan:Xaml.Key="accessed_time"
+            Foreground="Gray"
+            MouseDown="TextBlock_MouseDown" />
+          <dt:DateTimePickerControl SelectedDateTime="{Binding DataContext.AccessedTime, RelativeSource={RelativeSource AncestorType=Window}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+      </Grid>
+
+      <Border
+        Grid.Column="2"
+        BorderBrush="LightGray"
+        BorderThickness="1,0,0,0">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+          </Grid.RowDefinitions>
+          <StackPanel Orientation="Horizontal">
+            <Button
+              Grid.Row="1"
+              Width="60"
+              Height="32"
+              Margin="12,0,0,0"
+              HorizontalAlignment="Center"
+              local:ButtonExtensions.CornerRadius="8"
+              Command="{Binding DataContext.AddFilesToListCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+              Style="{StaticResource CustomCornerButtonStyle}">
+              <Button.ToolTip>
+                <TextBlock lan:Xaml.Key="add_files" />
+              </Button.ToolTip>
+              <StackPanel Orientation="Horizontal">
+                <Image
+                  Width="20"
+                  Margin="0,4,0,0"
+                  Source="/Images/add-file.png" />
+              </StackPanel>
+            </Button>
+            <Button
+              Grid.Row="1"
+              Width="60"
+              Height="32"
+              Margin="12,0,0,0"
+              HorizontalAlignment="Center"
+              local:ButtonExtensions.CornerRadius="8"
+              Command="{Binding DataContext.AddFolderToListCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+              Style="{StaticResource CustomCornerButtonStyle}">
+              <Button.ToolTip>
+                <TextBlock lan:Xaml.Key="add_folder" />
+              </Button.ToolTip>
+              <StackPanel Orientation="Horizontal">
+                <Image
+                  Width="24"
+                  Margin="0,4,0,0"
+                  Source="/Images/create-folder.png" />
+              </StackPanel>
+            </Button>
+            <Button
+              Grid.Row="1"
+              Width="60"
+              Height="32"
+              Margin="12,0,0,0"
+              HorizontalAlignment="Center"
+              local:ButtonExtensions.CornerRadius="8"
+              Command="{Binding DataContext.ClearListCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+              Style="{StaticResource CustomCornerButtonStyle}">
+              <Button.ToolTip>
+                <TextBlock lan:Xaml.Key="clear_list" />
+              </Button.ToolTip>
+              <StackPanel Orientation="Horizontal">
+                <Image Width="24" Source="/Images/empty-box.png" />
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <!--  Start  -->
+          <Button
+            Grid.Row="1"
+            Width="204"
+            Height="40"
+            Margin="12,0,0,0"
+            HorizontalAlignment="Left"
+            local:ButtonExtensions.CornerRadius="8"
+            Command="{Binding DataContext.StartChangeCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+            Foreground="Gray"
+            Style="{StaticResource CustomCornerButtonStyle}">
+            <Button.ToolTip>
+              <TextBlock lan:Xaml.Key="start" />
+            </Button.ToolTip>
+            <StackPanel Orientation="Horizontal">
+              <Image Width="20" Source="/Images/calendar.png" />
+              <TextBlock
+                Margin="12,0,0,0"
+                VerticalAlignment="Center"
+                lan:Xaml.Key="start"
+                FontSize="16" />
+            </StackPanel>
+          </Button>
+        </Grid>
+      </Border>
+
+      <Border
+        Grid.Column="3"
+        Margin="12,0,0,0"
+        BorderBrush="LightGray"
+        BorderThickness="1,0,0,0">
+        <Grid>
+          <Button
+            Width="24"
+            Height="24"
+            Margin="12,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            local:ButtonExtensions.CornerRadius="12"
+            BorderThickness="0"
+            Command="{Binding ChangeLanguageCommand}"
+            Content="{Binding CurrentLanguage}"
+            Style="{StaticResource CustomCornerButtonStyle}">
+            <Button.ToolTip>
+              <TextBlock lan:Xaml.Key="language" />
+            </Button.ToolTip>
+          </Button>
+          <Button
+            Width="24"
+            Height="24"
+            Margin="0,0,0,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            local:ButtonExtensions.CornerRadius="12"
+            BorderThickness="0"
+            Command="{Binding AboutCommand}"
+            Content="i"
+            Style="{StaticResource CustomCornerButtonStyle}">
+            <Button.ToolTip>
+              <TextBlock lan:Xaml.Key="about" />
+            </Button.ToolTip>
+          </Button>
+          <Button
+            Grid.Row="1"
+            Width="88"
+            Height="88"
+            Margin="12,2,0,0"
+            HorizontalAlignment="Center"
+            local:ButtonExtensions.CornerRadius="44"
+            Command="{Binding DataContext.GithubCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+            Style="{StaticResource CustomCornerButtonStyle}"
+            ToolTip="Github">
+            <StackPanel Orientation="Horizontal">
+              <Image
+                Width="66"
+                Margin="0,4,0,0"
+                Source="/Images/github.png" />
+            </StackPanel>
+          </Button>
+        </Grid>
+      </Border>
+    </Grid>
+
+    <Border
+      Grid.Row="1"
+      BorderBrush="LightGray"
+      BorderThickness="0,1,0,1">
+      <Grid>
+        <ListView
+          AllowDrop="True"
+          DragEnter="MyListView_DragEnter"
+          Drop="MyListView_Drop"
+          ItemsSource="{Binding Files}">
+          <ListView.ContextMenu>
+            <ContextMenu>
+              <MenuItem Command="{Binding AddFilesToListCommand}" Header="Add Files" />
+              <MenuItem Command="{Binding AddFolderToListCommand}" Header="Add Folder" />
+              <MenuItem Command="{Binding ClearListCommand}" Header="Clear List" />
+            </ContextMenu>
+          </ListView.ContextMenu>
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <Grid Margin="2">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="10*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                  Width="80"
+                  VerticalAlignment="Center"
+                  Foreground="{Binding Changed, Converter={StaticResource ColorConverter}}"
+                  Text="{Binding Id}"
+                  TextAlignment="Center" />
+                <TextBlock
+                  Grid.Column="1"
+                  VerticalAlignment="Center"
+                  Foreground="{Binding Changed, Converter={StaticResource ColorConverter}}"
+                  Text="{Binding Path}" />
+              </Grid>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Visibility="{Binding DragDropHintVisibility}">
+          <Image Width="64" Source="/Images/DragDrop.png" />
+          <TextBlock
+            Margin="0,8,0,0"
+            d:Text="Add files via drag &amp; drop"
+            lan:Xaml.Key="add_files_via_dragdrop"
+            FontSize="14"
+            Foreground="Gray" />
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <TextBlock
+      Grid.Row="2"
+      Margin="8,2"
+      Text="{Binding StatusDescription}" />
+  </Grid>
+</controls:MicaWindow>
