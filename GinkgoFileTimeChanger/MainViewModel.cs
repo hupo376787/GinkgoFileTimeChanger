@@ -68,7 +68,7 @@ namespace GinkgoFileTimeChanger
         public async Task AddFiles(string[] files)
         {
             StatusDescription = LanService.Get("added_x_files")!.Replace("{0}", files.Count().ToString());// $"Found {files.Count()} files";
-            int i = 1;
+            int i = 0;
             foreach (var file in files)
             {
                 await Application.Current!.Dispatcher.InvokeAsync(() => Files.Add(new FileItem() { Path = file }));
