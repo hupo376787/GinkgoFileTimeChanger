@@ -11,6 +11,8 @@ namespace GinkgoFileTimeChanger
 {
     public partial class MainViewModel : ObservableObject
     {
+        string version = "v1.1";
+
         public MainViewModel()
         {
             StatusDescription = LanService.Get("ready")!;
@@ -53,7 +55,7 @@ namespace GinkgoFileTimeChanger
             int i = 1;
             foreach (var file in Files)
             {
-                if (file.Id == 0 || file.Path == "Ginkgo File Time Changer v1.0.0") continue;
+                if (file.Id == 0 || file.Path == "Ginkgo File Time Changer " + version || file.Path == "银杏文件时间修改器 " + version) continue;
                 File.SetCreationTime(file.Path, CreatedTime);
                 File.SetLastWriteTime(file.Path, ModifiedTime);
                 File.SetLastAccessTime(file.Path, AccessedTime);
@@ -163,7 +165,7 @@ namespace GinkgoFileTimeChanger
         private void About()
         {
             Files.Clear();
-            Files.Add(new FileItem() { Id = 0, Path = LanService.Get("app_name") + " v1.0.0" });
+            Files.Add(new FileItem() { Id = 0, Path = LanService.Get("app_name") + " " + version });
         }
     }
 }
