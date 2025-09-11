@@ -17,6 +17,7 @@
     <None Remove="Images\DragDrop.png" />
     <None Remove="Images\empty-box.png" />
     <None Remove="Images\github.png" />
+    <None Remove="Images\robot.png" />
     <None Remove="Languages\en.json" />
     <None Remove="Languages\zh.json" />
   </ItemGroup>
@@ -51,6 +52,7 @@
     <Resource Include="Images\DragDrop.png" />
     <Resource Include="Images\empty-box.png" />
     <Resource Include="Images\github.png" />
+    <Resource Include="Images\robot.png" />
   </ItemGroup>
 
 </Project>

@@ -2,6 +2,7 @@
   "app_name": "银杏文件时间修改器",
   "language": "语言",
   "start": "开始",
+  "smart": "根据文件名智能修改时间",
   "created_time": "创建时间",
   "modified_time": "修改时间",
   "accessed_time": "访问时间",

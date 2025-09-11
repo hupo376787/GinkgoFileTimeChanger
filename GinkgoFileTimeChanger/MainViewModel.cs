@@ -56,9 +56,32 @@ namespace GinkgoFileTimeChanger
             foreach (var file in Files)
             {
                 if (file.Id == 0 || file.Path == "Ginkgo File Time Changer " + version || file.Path == "银杏文件时间修改器 " + version) continue;
+                if (!File.Exists(file.Path)) continue;
+
                 File.SetCreationTime(file.Path, CreatedTime);
                 File.SetLastWriteTime(file.Path, ModifiedTime);
                 File.SetLastAccessTime(file.Path, AccessedTime);
+                file.Changed = true;
+
+                StatusDescription = LanService.Get("changed_x_files")!.Replace("{0}", i.ToString());//$"Changed {i} files";
+                await Task.Delay(1);
+                i++;
+            }
+        }
+
+        [RelayCommand]
+        private async Task SmartChange()
+        {
+            int i = 1;
+            foreach (var file in Files)
+            {
+                if (file.Id == 0 || file.Path == "Ginkgo File Time Changer " + version || file.Path == "银杏文件时间修改器 " + version) continue;
+                if (!File.Exists(file.Path)) continue;
+
+                var dt = SmartDateParser.ExtractDateFromFileName(file.Path);
+                File.SetCreationTime(file.Path, dt ?? CreatedTime);
+                File.SetLastWriteTime(file.Path, dt ?? ModifiedTime);
+                File.SetLastAccessTime(file.Path, dt ?? AccessedTime);
                 file.Changed = true;
 
                 StatusDescription = LanService.Get("changed_x_files")!.Replace("{0}", i.ToString());//$"Changed {i} files";

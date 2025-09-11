@@ -2,6 +2,7 @@
   "app_name": "Ginkgo File Time Changer",
   "language": "Language",
   "start": "Start",
+  "smart": "Modify time based on file name",
   "created_time": "Created Time",
   "modified_time": "Modified Time",
   "accessed_time": "Accessed Time",

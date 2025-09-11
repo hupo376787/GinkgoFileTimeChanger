@@ -166,29 +166,44 @@
             </Button>
           </StackPanel>
 
-          <!--  Start  -->
-          <Button
-            Grid.Row="1"
-            Width="204"
-            Height="40"
-            Margin="12,0,0,0"
-            HorizontalAlignment="Left"
-            local:ButtonExtensions.CornerRadius="8"
-            Command="{Binding DataContext.StartChangeCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-            Foreground="Gray"
-            Style="{StaticResource CustomCornerButtonStyle}">
-            <Button.ToolTip>
-              <TextBlock lan:Xaml.Key="start" />
-            </Button.ToolTip>
-            <StackPanel Orientation="Horizontal">
-              <Image Width="20" Source="/Images/calendar.png" />
-              <TextBlock
-                Margin="12,0,0,0"
-                VerticalAlignment="Center"
-                lan:Xaml.Key="start"
-                FontSize="16" />
-            </StackPanel>
-          </Button>
+          <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <!--  Start  -->
+            <Button
+              Width="164"
+              Height="40"
+              Margin="12,0,0,0"
+              HorizontalAlignment="Left"
+              local:ButtonExtensions.CornerRadius="8"
+              Command="{Binding DataContext.StartChangeCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+              Foreground="Gray"
+              Style="{StaticResource CustomCornerButtonStyle}">
+              <Button.ToolTip>
+                <TextBlock lan:Xaml.Key="start" />
+              </Button.ToolTip>
+              <StackPanel Orientation="Horizontal">
+                <Image Width="20" Source="/Images/calendar.png" />
+                <TextBlock
+                  Margin="12,0,0,0"
+                  VerticalAlignment="Center"
+                  lan:Xaml.Key="start"
+                  FontSize="16" />
+              </StackPanel>
+            </Button>
+            <!--  Start  -->
+            <Button
+              Width="40"
+              Height="40"
+              HorizontalAlignment="Left"
+              local:ButtonExtensions.CornerRadius="8"
+              Command="{Binding DataContext.SmartChangeCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+              Foreground="Gray"
+              Style="{StaticResource CustomCornerButtonStyle}">
+              <Button.ToolTip>
+                <TextBlock lan:Xaml.Key="smart" />
+              </Button.ToolTip>
+              <Image Width="20" Source="/Images/robot.png" />
+            </Button>
+          </StackPanel>
         </Grid>
       </Border>
 
