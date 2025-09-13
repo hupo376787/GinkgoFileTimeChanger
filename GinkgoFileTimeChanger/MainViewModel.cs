@@ -11,7 +11,7 @@ namespace GinkgoFileTimeChanger
 {
     public partial class MainViewModel : ObservableObject
     {
-        string version = "v2.0";
+        string version = "v2.1";
 
         public MainViewModel()
         {
@@ -92,30 +92,24 @@ namespace GinkgoFileTimeChanger
 
         public async Task AddFiles(string[] files)
         {
-            StatusDescription = LanService.Get("added_x_files")!.Replace("{0}", files.Count().ToString());// $"Found {files.Count()} files";
+            StatusDescription = LanService.Get("added_x_files")!.Replace("{0}", files.Count().ToString());
             int i = 0;
             foreach (var file in files)
             {
-                await Application.Current!.Dispatcher.InvokeAsync(() => Files.Add(new FileItem() { Path = file }));
-
-                StatusDescription = LanService.Get("added_x_files")!.Replace("{0}", i.ToString()).Replace("{1}", files.Count().ToString());//  $"Adding file {i}/{files.Count()}";
-                await Task.Delay(new TimeSpan(0, 0, 0, 0, 1));
+                Files.Add(new FileItem() { Path = file });
+                StatusDescription = LanService.Get("added_x_files")!.Replace("{0}", i.ToString()).Replace("{1}", files.Count().ToString());
+                //await Task.Delay(1);
                 i++;
             }
             ReorderId();
-            StatusDescription = LanService.Get("added_x_files")!.Replace("{0}", i.ToString());// $"Added {files.Count()} files";
+            StatusDescription = LanService.Get("added_x_files")!.Replace("{0}", i.ToString());
         }
 
         public async Task AddFolders(string[] folders)
         {
             foreach (var folder in folders)
             {
-                List<string> files = new();
-                foreach (var file in Directory.EnumerateFiles(folder, "*.*", SearchOption.AllDirectories))
-                {
-                    files.Add(file);
-                }
-                await AddFiles(files.ToArray());
+                await AddFiles(Directory.EnumerateFiles(folder, "*.*", SearchOption.AllDirectories).ToArray());
                 await Task.Delay(new TimeSpan(0, 0, 0, 0, 1));
             }
         }
