@@ -39,6 +39,8 @@ namespace GinkgoFileTimeChanger
         private Visibility dragDropHintVisibility;
         [ObservableProperty]
         private string currentLanguage = "en";
+        [ObservableProperty]
+        private double progress;
 
         private void Files_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
@@ -77,6 +79,7 @@ namespace GinkgoFileTimeChanger
                 file.Changed = true;
 
                 int current = Interlocked.Increment(ref processed);
+                Progress = current * 1.0 / Files.Count;
 
                 // UI 更新必须通过 Dispatcher
                 Application.Current.Dispatcher.Invoke(() =>

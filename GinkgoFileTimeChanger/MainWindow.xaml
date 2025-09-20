@@ -29,7 +29,7 @@
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
       <RowDefinition />
-      <RowDefinition Height="20" />
+      <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
     <Grid>
       <Grid.ColumnDefinitions>
@@ -349,9 +349,21 @@
       </Grid>
     </Border>
 
-    <TextBlock
-      Grid.Row="2"
-      Margin="8,2"
-      Text="{Binding StatusDescription}" />
+    <Grid Grid.Row="2">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <TextBlock Margin="8,2" Text="{Binding StatusDescription}" />
+      <ProgressBar
+        x:Name="progress"
+        Grid.Row="1"
+        Height="4"
+        d:Value="80"
+        Maximum="1"
+        Minimum="0"
+        Style="{x:Null}"
+        Value="{Binding Progress}" />
+    </Grid>
   </Grid>
 </controls:MicaWindow>
