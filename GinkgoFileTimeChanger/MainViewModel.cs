@@ -88,6 +88,13 @@ namespace GinkgoFileTimeChanger
                         .Replace("{0}", current.ToString());
                 });
             });
+
+            //避免并行更新导致的“竞态条件”，最终更新一次
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                StatusDescription = LanService.Get("changed_x_files")!
+                    .Replace("{0}", Files.Count.ToString());
+            });
             Debug.WriteLine($"{MaxParallel}:{(DateTime.Now - date).TotalSeconds}");
         }
 
