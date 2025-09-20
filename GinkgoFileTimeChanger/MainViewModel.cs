@@ -11,7 +11,7 @@ namespace GinkgoFileTimeChanger
 {
     public partial class MainViewModel : ObservableObject
     {
-        string version = "v2.1";
+        string version = "v2.2";
 
         public MainViewModel()
         {
@@ -34,6 +34,8 @@ namespace GinkgoFileTimeChanger
         [ObservableProperty]
         private DateTime accessedTime;
         [ObservableProperty]
+        private int maxParallel = 50;
+        [ObservableProperty]
         private Visibility dragDropHintVisibility;
         [ObservableProperty]
         private string currentLanguage = "en";
@@ -52,21 +54,38 @@ namespace GinkgoFileTimeChanger
         [RelayCommand]
         private async Task StartChange()
         {
-            int i = 1;
-            foreach (var file in Files)
+            DateTime date = DateTime.Now;
+            var options = new ParallelOptions
             {
-                if (file.Id == 0 || file.Path == "Ginkgo File Time Changer " + version || file.Path == "银杏文件时间修改器 " + version) continue;
-                if (!File.Exists(file.Path)) continue;
+                MaxDegreeOfParallelism = MaxParallel
+            };
+
+            int processed = 0;
+
+            await Parallel.ForEachAsync(Files.ToArray(), options, async (file, token) =>
+            {
+                // 跳过无效文件
+                if (file.Id == 0 ||
+                    file.Path == "Ginkgo File Time Changer " + version ||
+                    file.Path == "银杏文件时间修改器 " + version) return;
+
+                if (!File.Exists(file.Path)) return;
 
                 File.SetCreationTime(file.Path, CreatedTime);
                 File.SetLastWriteTime(file.Path, ModifiedTime);
                 File.SetLastAccessTime(file.Path, AccessedTime);
                 file.Changed = true;
 
-                StatusDescription = LanService.Get("changed_x_files")!.Replace("{0}", i.ToString());//$"Changed {i} files";
-                await Task.Delay(1);
-                i++;
-            }
+                int current = Interlocked.Increment(ref processed);
+
+                // UI 更新必须通过 Dispatcher
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    StatusDescription = LanService.Get("changed_x_files")!
+                        .Replace("{0}", current.ToString());
+                });
+            });
+            Debug.WriteLine($"{MaxParallel}:{(DateTime.Now - date).TotalSeconds}");
         }
 
         [RelayCommand]

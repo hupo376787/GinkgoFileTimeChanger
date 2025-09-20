@@ -18,5 +18,6 @@
   "found_x_files": "已发现 {0} 个文件",
   "adding_files": "正在添加 {0}/{1}",
   "added_x_files": "已添加 {0} 个文件",
-  "reordering_files": "正在排序..."
+  "reordering_files": "正在排序...",
+  "max_parallel": "并发数"
 }

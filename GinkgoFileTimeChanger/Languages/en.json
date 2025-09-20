@@ -18,5 +18,6 @@
   "found_x_files": "Found {0} files",
   "adding_files": "Adding file {0}/{1}",
   "added_x_files": "Added {0} files",
-  "reordering_files": "Reordering files..."
+  "reordering_files": "Reordering files...",
+  "max_parallel": "Parallels"
 }
