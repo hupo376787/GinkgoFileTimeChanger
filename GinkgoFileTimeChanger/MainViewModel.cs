@@ -11,7 +11,7 @@ namespace GinkgoFileTimeChanger
 {
     public partial class MainViewModel : ObservableObject
     {
-        string version = "v2.3";
+        string version = "v2.4";
 
         public MainViewModel()
         {

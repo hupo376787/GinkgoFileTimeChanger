@@ -244,9 +244,26 @@
         BorderThickness="1,0,0,0">
         <Grid>
           <Button
+            Grid.Row="1"
+            Width="88"
+            Height="88"
+            Margin="12,0,0,0"
+            HorizontalAlignment="Center"
+            local:ButtonExtensions.CornerRadius="44"
+            Command="{Binding DataContext.GithubCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+            Style="{StaticResource CustomCornerButtonStyle}"
+            ToolTip="Github">
+            <StackPanel Orientation="Horizontal">
+              <Image
+                Width="66"
+                Margin="0,4,0,0"
+                Source="/Images/github.png" />
+            </StackPanel>
+          </Button>
+          <Button
             Width="24"
             Height="24"
-            Margin="12,0,0,0"
+            Margin="6,4,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             local:ButtonExtensions.CornerRadius="12"
@@ -261,7 +278,7 @@
           <Button
             Width="24"
             Height="24"
-            Margin="0,0,0,0"
+            Margin="0,4,-4,0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             local:ButtonExtensions.CornerRadius="12"
@@ -272,23 +289,6 @@
             <Button.ToolTip>
               <TextBlock lan:Xaml.Key="about" />
             </Button.ToolTip>
-          </Button>
-          <Button
-            Grid.Row="1"
-            Width="88"
-            Height="88"
-            Margin="12,2,0,0"
-            HorizontalAlignment="Center"
-            local:ButtonExtensions.CornerRadius="44"
-            Command="{Binding DataContext.GithubCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-            Style="{StaticResource CustomCornerButtonStyle}"
-            ToolTip="Github">
-            <StackPanel Orientation="Horizontal">
-              <Image
-                Width="66"
-                Margin="0,4,0,0"
-                Source="/Images/github.png" />
-            </StackPanel>
           </Button>
         </Grid>
       </Border>
