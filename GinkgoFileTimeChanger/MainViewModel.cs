@@ -11,7 +11,7 @@ namespace GinkgoFileTimeChanger
 {
     public partial class MainViewModel : ObservableObject
     {
-        string version = "v2.4";
+        string version = "v2.5";
 
         public MainViewModel()
         {
@@ -188,7 +188,7 @@ namespace GinkgoFileTimeChanger
         [RelayCommand]
         private void Github()
         {
-            Process.Start(new ProcessStartInfo("https://github.com/hupo376787/WeiboAlbumDownloader/releases") { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo("https://github.com/hupo376787/GinkgoFileTimeChanger/releases") { UseShellExecute = true });
         }
 
         [RelayCommand]
