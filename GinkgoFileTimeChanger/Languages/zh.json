@@ -14,7 +14,7 @@
   "add_files_via_dragdrop": "拖拽文件到列表以添加文件",
   "ready": "准备就绪",
   "about": "关于",
-  "changed_x_files": "已修改 {0} 个文件",
+  "changed_x_files": "已修改 {0}/{1} 个文件",
   "found_x_files": "已发现 {0} 个文件",
   "adding_files": "正在添加 {0}/{1}",
   "added_x_files": "已添加 {0} 个文件",

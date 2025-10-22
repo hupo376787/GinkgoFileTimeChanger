@@ -85,7 +85,7 @@ namespace GinkgoFileTimeChanger
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     StatusDescription = LanService.Get("changed_x_files")!
-                        .Replace("{0}", current.ToString());
+                        .Replace("{0}", current.ToString()).Replace("{1}", Files.Count.ToString());
                 });
             });
 
@@ -93,7 +93,7 @@ namespace GinkgoFileTimeChanger
             Application.Current.Dispatcher.Invoke(() =>
             {
                 StatusDescription = LanService.Get("changed_x_files")!
-                    .Replace("{0}", Files.Count.ToString());
+                    .Replace("{0}", Files.Count.ToString()).Replace("{1}", Files.Count.ToString());
             });
             Debug.WriteLine($"{MaxParallel}:{(DateTime.Now - date).TotalSeconds}");
         }

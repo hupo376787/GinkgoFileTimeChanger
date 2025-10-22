@@ -14,7 +14,7 @@
   "add_files_via_dragdrop": "Add files via drag & drop",
   "ready": "Ready",
   "about": "About",
-  "changed_x_files": "Changed {0} files",
+  "changed_x_files": "Changed {0}/{1} files",
   "found_x_files": "Found {0} files",
   "adding_files": "Adding file {0}/{1}",
   "added_x_files": "Added {0} files",
